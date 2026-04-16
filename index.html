@@ -347,7 +347,7 @@ function switchTab(id,el){
       <div class="tab" onclick="switchTabAvg('sehartsen', this)">SEH Artsen</div>
       <div class="tab" onclick="switchTabAvg('sehvpk', this)">SEH Verpleegkundigen</div>
     </div>
-    <div class="panel active" id="panel-kindergeneeskunde">
+    <div class="panel active" id="panel-avg-kindergeneeskunde">
       <div class="dash-header">
         <div class="dash-badge">Op basis van 4 ingevulde vragenlijsten</div>
         <div class="dash-title">Kindergeneeskunde</div>
@@ -399,7 +399,7 @@ function switchTab(id,el){
       </div>
       <div class="footer">Schaal: 1 = helemaal mee oneens &middot; 2 = oneens &middot; 3 = neutraal &middot; 4 = eens &middot; 5 = helemaal mee eens</div>
     </div>
-    <div class="panel" id="panel-interne">
+    <div class="panel" id="panel-avg-interne">
       <div class="dash-header">
         <div class="dash-badge">Op basis van 6 ingevulde vragenlijsten</div>
         <div class="dash-title">Interne Geneeskunde</div>
@@ -451,7 +451,7 @@ function switchTab(id,el){
       </div>
       <div class="footer">Schaal: 1 = helemaal mee oneens &middot; 2 = oneens &middot; 3 = neutraal &middot; 4 = eens &middot; 5 = helemaal mee eens</div>
     </div>
-    <div class="panel" id="panel-vsoncologie">
+    <div class="panel" id="panel-avg-vsoncologie">
       <div class="dash-header">
         <div class="dash-badge">Op basis van 2 ingevulde vragenlijsten</div>
         <div class="dash-title">VS Oncologie</div>
@@ -503,7 +503,7 @@ function switchTab(id,el){
       </div>
       <div class="footer">Schaal: 1 = helemaal mee oneens &middot; 2 = oneens &middot; 3 = neutraal &middot; 4 = eens &middot; 5 = helemaal mee eens</div>
     </div>
-    <div class="panel" id="panel-vsinterne">
+    <div class="panel" id="panel-avg-vsinterne">
       <div class="dash-header">
         <div class="dash-badge">Op basis van 4 ingevulde vragenlijsten</div>
         <div class="dash-title">VS Interne Geneeskunde</div>
@@ -555,7 +555,7 @@ function switchTab(id,el){
       </div>
       <div class="footer">Schaal: 1 = helemaal mee oneens &middot; 2 = oneens &middot; 3 = neutraal &middot; 4 = eens &middot; 5 = helemaal mee eens</div>
     </div>
-    <div class="panel" id="panel-sehartsen">
+    <div class="panel" id="panel-avg-sehartsen">
       <div class="dash-header">
         <div class="dash-badge">Op basis van 3 ingevulde vragenlijsten</div>
         <div class="dash-title">SEH Artsen</div>
@@ -612,7 +612,7 @@ function switchTab(id,el){
       </div>
       <div class="footer">Schaal: 1 = helemaal mee oneens &middot; 2 = oneens &middot; 3 = neutraal &middot; 4 = eens &middot; 5 = helemaal mee eens</div>
     </div>
-    <div class="panel" id="panel-sehvpk">
+    <div class="panel" id="panel-avg-sehvpk">
       <div class="dash-header">
         <div class="dash-badge">Op basis van 2 ingevulde vragenlijsten</div>
         <div class="dash-title">SEH Verpleegkundigen</div>
@@ -670,41 +670,33 @@ function switchTab(id,el){
       <div class="footer">Schaal: 1 = helemaal mee oneens &middot; 2 = oneens &middot; 3 = neutraal &middot; 4 = eens &middot; 5 = helemaal mee eens</div>
     </div>
   </div>
+</div>
   <script>
+    // View switcher (Per antwoord / Gemiddelden)
+    function switchMode(id, el) {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('view-' + id).classList.add('active');
+    }
+
+    // Tab switcher voor "Per antwoord" view
     function switchTab(id, el) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      const view = document.getElementById('view-antwoorden');
+      view.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      view.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       el.classList.add('active');
       document.getElementById('panel-' + id).classList.add('active');
+    }
+
+    // Tab switcher voor "Gemiddelden" view
+    function switchTabAvg(id, el) {
+      const view = document.getElementById('view-gemiddelden');
+      view.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      view.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('panel-avg-' + id).classList.add('active');
     }
   </script>
-</div>
-
-<script>
-function switchMode(id, el) {
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('view-' + id).classList.add('active');
-}
-
-
-function switchTab(id,el){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('panel-'+id).classList.add('active');
-}
-
-
-
-    function switchTabAvg(id, el) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('panel-' + id).classList.add('active');
-    }
-  
-</script>
 </body>
 </html>
